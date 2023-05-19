@@ -1,0 +1,37 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark  navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold fst-italic" href="{% url 'home' %}">GM</a>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto fst-italic text-uppercase fw-bold">
+        <li class="nav-item px-3">
+          <a href="{% static 'portafolio/images/Programadorjunior.pdf' %}"
+             class="btn btn-primary nav-link text-white"
+             target="_blank">
+             Download CV
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'posts:home' %}" class="nav-link">Post</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'tasks:home' %}" class="nav-link">Task</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'logout' %}" class="nav-link">LogOut</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'register' %}" class="nav-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login' %}" class="nav-link pr-3">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

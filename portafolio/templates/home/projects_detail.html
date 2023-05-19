@@ -1,0 +1,57 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="rounded-3 text-center col-md-10 offset-md-1 mt-4 bg-dark">
+  <div class="card py-3 bg-gris-o text-light">
+    <div class="card-body">
+      <h1 class="jumbotron-heading animate__animated animate__fadeInUp">Portafolio</h1>
+        <img src="{% static 'portafolio/images/proyecto.jpeg'%}" alt="Project_1" class="img-fluid">
+        <h5 class="mt-3">Esta página en sí es un proyecto</h5>
+        <p class="lead text-light">Hecha en python con Django. <br>
+        No es solo una presentación, sino que un usuario puede registrarse y asi poder acceder a un<br>
+        To-do-list con sus operaciones CRUD. Por otra parte tenemos un BLOG<br>
+        Accesible para todos, al que solo usuarios registrados podrán hacer comentarios en el mismo<br>
+        Respectivamente tenemos un Login y Logout <br>
+        En el footer de la página de inicio hay un formulario para correos (que fue un dolor de cabeza)<br>
+        El cual lo hice con Mailtrap, un servidor para probar y depurar el envío de correos en entornos de desarrollo y prueba
+        Tambien maneje un poco la parte de tests <br>
+        Despliegue en <a href="https://www.pythonanywhere.com" target="_blank">PythonAnyWhere</a> 
+        </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="rounded text-center col-md-10 offset-md-1 mt-4 bg-dark text-light">
+  <div class="card py-3 bg-gris-o text-light">
+    <div class="card-body">
+        <h1 class="jumbotron-heading animate__animated animate__fadeInUp">Tienda Virtual</h1>
+        <img src="{% static 'portafolio/images/proceso.jpeg'%}" alt="Project_1" class="img-fluid">
+        <h5 class="mt-3">Este proyecto debe tener integrada una pasarela de pago</h5>
+        <p class="lead text-light">Hecha en python con Django REST Framework. <br>
+        Integrada con Stripe para la pasarela de pago.<br>
+        Tareas en 2do plano con Celery y Redis.<br>
+        React para el frontend
+        </p>
+    </div>
+  </div>
+</section>
+
+<section class="rounded text-center col-md-10 offset-md-1 mt-4 bg-dark text-light">
+  <div class="card py-1 bg-gris-o text-light">
+    <div class="card-body">
+        <h1 class="jumbotron-heading animate__animated animate__fadeInUp">Idea</h1>
+          <p class="lead text-light">
+            Los proyectos deben tener un CRUD. <br>
+            Deben tener autenticación y autorización de usuarios. <br>
+            Que tengan sus respectivos tests. <br>
+            Aprender docker y AWS. <br>
+            Lo voy a intentar pero el front no creo que sea su fuerte
+          </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+
+/* Linea de separación */
+hr {
+    width: 85%;
+    margin: 8px auto;
+    border-top: 2px solid #dee2e6;
+}
+
+.image-profile {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.nav-item {
+    margin-right: 12px;
+}
+
+.home:hover {
+    color: #031844;
+}
+
+.loguot:hover {
+    color: #031844;
+}
+
+/* Aquí termina la cabecera */
+
+/* 1440 x 900 */
+
+@media (max-width: 1440px) {
+    .menu {
+        margin: 0% 5%;
+    }
+
+}
+

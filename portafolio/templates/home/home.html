@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+  
+  <section class="rounded text-center col-md-10 offset-md-1 mt-4 bg-dark-o text-light fst-italic">
+    <div class="container py-3">
+      <div class="row">
+          <div class="circle-container col-md-4 offset-md-4 container d-flex justify-content-center align-items-center">
+            <img src="{% static 'portafolio/images/perfil.jpg'%}" alt="Foto Gonzalo Maldonado" class="img-fluid">
+          </div>
+          <h1 class="jumbotron-heading animate__animated animate__fadeInUp">Gonzalo Maldonado</h1>
+          <h5>Programador Backend - Python</h5>
+          <p class="lead text-light">Bienvenido a mi portafolio. Aquí podrás encontrar una muestra de mis proyectos y habilidades.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="projects animate__animated animate__fadeInUp text-light mt-5 fst-italic">
+    <div class="container">
+      <h2 class="text-center mb-5">Mis proyectos</h2>
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <a href="{% url 'projects_detail' %}" class="card bg-dark text-light text-center nav-link">
+            <img class="card-img-top mt-3" src="{% static 'portafolio/images/proyecto.jpeg' %}" alt="Project 1">
+            <div class="card-body">
+              <h5 class="card-title">Proyecto 1</h5>
+            </div>
+            <h4>Portafolio</h4>
+          </a>
+        </div>
+        <div class="col-md-6 mt-2">
+          <a href="#" class="card bg-dark text-light text-center nav-link">
+            <img class="card-img-top mt-3" src="{% static 'portafolio/images/proceso.jpeg' %}" alt="Project 2">
+            <div class="card-body d-flex justify-content-between">
+              <h5 class="card-title align-self-start">Proyecto 2</h5>
+              <p class="align-self-end" >en proceso...</p>
+            </div>
+            <h4>Tienda Virtual</h4>
+          </a>
+        </div>
+        
+        <a href="{% url 'projects_detail' %}" class="btn btn-primary col-md-6 offset-md-3 mt-4 mb-5">Ver detalle proyectos</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

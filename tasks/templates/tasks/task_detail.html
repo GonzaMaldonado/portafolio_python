@@ -1,0 +1,51 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 bg-dark text-light mt-3 mb-3">
+      <h1 class="text-center text-uppercase text-truncate mt-3">{{task.title}}</h1>
+      {{error}}
+
+      {% if task.completed %}
+        <form action="{% url 'tasks:task_delete' task.id %}" method="POST">
+          {% csrf_token %}
+          {{form}}
+          <br>
+          <button class="btn btn-danger mt-2 mb-3 col-md-6 offset-md-3">
+            Delete
+          </button>
+        </form>
+  
+      {% else %}
+
+        <form method="POST">
+          {% csrf_token %}
+          {{form}}
+          <br>
+          <button class="btn btn-primary mt-3 col-md-6 offset-md-3">
+            Update
+          </button>
+        </form>
+        <div class="mt-2">
+          <form action="{% url 'tasks:task_complete' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-success col-md-6 offset-md-3">
+              Complete
+            </button>
+          </form>
+        
+          <form action="{% url 'tasks:task_delete' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger mt-2 mb-3 col-md-6 offset-md-3">
+              Delete
+            </button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}

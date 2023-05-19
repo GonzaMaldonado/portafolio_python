@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  Cargar archivos estáticos  -->
+    {% load static %}
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link href="{% static 'base/css/general.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'base/css/menu.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'base/css/footer.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="{% static 'portafolio/images/favicon-32x32.png' %}">
+    <!-- Bloque css cambiante -->
+    {% block css %} {% endblock css %}
+    <style>
+        .image-profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 60%;
+            object-fit: cover;
+        }
+
+        .nav-item {
+             margin-right: 12px;
+       }
+    </style>
+    
+    <title>{% block title %} {% endblock title %}</title>
+</head>
+<body class="body-bg">
+
+    
+    <!-- Incluir menú -->
+    {% include 'base/menu.html' %}
+    
+    <section class="section">
+        <!-- Contenido cambiante -->
+        {% block content %} {% endblock content %}
+    </section>
+    
+    {% url 'login' as url_login %}
+    {% url 'register' as url_register %}
+
+    {% if request.path == url_login %}
+    <!-- No incluir footer -->
+    {% elif request.path == url_register %}
+    <!-- No incluir footer -->
+    {% else %}
+    <!-- Incluir footer -->
+    {% include 'base/footer.html' %}
+    {% endif %}
+    
+</body>
+</html>
+

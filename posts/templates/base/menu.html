@@ -1,0 +1,59 @@
+<!-- Cargar archivos estáticos -->
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fst-italic home" href="{% url 'home' %}">GM</a>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto fst-italic text-uppercase fw-bold">
+          {% if user.is_authenticated %}
+          <li class="nav-item d-flex">
+            <!-- Imagen del usuario -->
+            {% if request.user.profile.photo %}
+            <img src="{{ request.user.profile.photo.url }}" alt="Profile" class="image-profile">
+            {% else %}
+            <img src="{% static 'base/image/Default/default-user.png' %}" alt="Profile" class="image-profile">
+            {% endif %}
+            <!-- Nombre completo del usuario -->
+                <span class="nav-link text-light px-3 mt-2">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+          </li>
+          <!-- Botón de editar perfil -->
+          {% url 'edit_user' as url_edit %}
+          {% if request.path == url_edit %}
+          <li class="nav-item">
+            <a href="{% url 'posts:home' %}" class="nav-link btn btn-primary text-white px-1">Volver</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="{% url 'edit_user' %}" class="nav-link btn btn-primary text-white px-1">Editar perfil</a>
+          </li>
+          {% endif %}
+          <!-- Verificar si el usuario es staff -->
+          {% if request.user.is_staff == True %}
+          <li class="nav-item">
+              <a href="{% url 'admin:index' %}" class="nav-link btn btn-primary text-white px-1">Ir al admin</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link btn btn-primary text-white px-1">LogOut</a>
+          </li>
+          {% else %}
+          <li class="nav-item d-flex">
+            {% url 'login' as url_login %}
+            {% url 'register' as url_register %}
+
+            {% if request.path == url_register %}
+            <a href="{% url 'login' %}" class="login nav-link">Login</a>
+            {% elif request.path == url_login %}
+            <a href="{% url 'register' %}" class="create nav-link">Register</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="login nav-link px-3">Login</a>
+            <a href="{% url 'register' %}" class="create nav-link px-2">Register</a>
+            {% endif %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+</nav>

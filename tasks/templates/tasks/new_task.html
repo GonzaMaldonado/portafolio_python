@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<main class="container">
+  <div class="row">
+    <section class="col-md-8 offset-md-2 mt-5">
+    
+      <form action="{% url 'tasks:new_task' %}" method="POST" class="card card-body bg-dark text-light">
+        
+          <h1 class="text-center fw-bold text-uppercase">Create Task</h1>
+          {{error}}
+          {% csrf_token %}
+      
+          {{form}}
+      
+          <button class="btn btn-primary">
+              Create Task
+          </button>
+      </form>
+    </section>
+  </div>
+</main>
+
+{% endblock %}

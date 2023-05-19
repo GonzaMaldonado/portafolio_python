@@ -1,0 +1,23 @@
+<div class="category-container">
+    <ul>
+
+        <!-- Redirigir al index -->
+        <li class="nav-item {% if request.path == '/posts/' %} active {% endif %}">
+            <a href="{% url 'posts:home' %}" class="nav-link text-light">Todo</a>
+        </li>
+
+        <!-- Listar categorías destacadas -->
+        {% for category in navbar_category %}
+        {% url 'posts:category_detail' category.slug as the_url %}
+        <li class="nav-item {% if request.path == the_url %} active {% endif %}">
+            <a href="{% url 'posts:category_detail' category.slug %}" class="nav-link text-light">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+
+        <!-- Listar todas las categorías -->
+        <li class="nav-item {% if request.path == '/posts/categories/' %} active {% endif %}">
+            <a href="{% url 'posts:all_categories' %}" class="nav-link text-light">Todas las categorias</a>
+        </li>
+
+    </ul>
+</div>
