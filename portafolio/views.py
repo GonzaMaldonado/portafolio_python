@@ -3,18 +3,20 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, DeleteView
+from django.views.generic import ListView, CreateView, TemplateView, DeleteView
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from .forms import SignUpForm, LoginForm, UserForm, ProfileForm, PasswordChangingForm
-from .models import Profile
+from .models import Profile, Skill
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.core.mail import send_mail
 from django.conf import settings
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
     template_name = 'home/home.html'
+    model = Skill
+    context_object_name = 'skills'
 
     def post(self, request, *args, **kwargs):
         name = request.POST.get('name')
@@ -32,7 +34,8 @@ class HomeView(TemplateView):
             fail_silently=False
         )
         return redirect('thanks')
-    
+
+
 class ThanksView(TemplateView):
     template_name = 'home/thanks.html'
 

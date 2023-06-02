@@ -18,29 +18,54 @@
   
   <section class="projects animate__animated animate__fadeInUp text-light mt-5 fst-italic">
     <div class="container">
-      <h2 class="text-center mb-5">Mis proyectos</h2>
+      <h2 class="text-center mb-3">Mis conocimientos</h2>
       <div class="row">
-        <div class="col-md-6 mt-2">
+        <div class="col-md-10 offset-md-1 mt-2">
           <a href="{% url 'projects_detail' %}" class="card bg-dark text-light text-center nav-link">
-            <img class="card-img-top mt-3" src="{% static 'portafolio/images/proyecto.jpeg' %}" alt="Project 1">
             <div class="card-body">
-              <h5 class="card-title">Proyecto 1</h5>
+              <h5 class="card-title">Fundamentos de programación</h5>
+              <p>Conceptos básicos, como variables, tipos de datos, estructuras de control y funciones</p>
+              <h5 class="card-title">Fundamentos de la web</h5>
+              <p>Protocolos HTTP y HTTPS, sus métodos(GET, POST, etc.) y conceptos básicos de HTML, CSS y 
+                JavaScript</p>
+              <h5 class="card-title">Fundamentos de Base de Datos</h5>
+              <p>Tablas, consultas SQL y relaciones entre tablas</p>
+              <h5 class="card-title">Django</h5>
+              <p>Conceptos de django, como la estructura de un proyecto y una aplicación, definiendo modelos
+                , vistas y plantillas <br>
+                Interacción con BBDD utilizando el ORM de Django
+              </p>
+              <h5 class="card-title">Desarrollo de APIs RESTful</h5>
+              <p>Creación de una API RESTful con Django REST Framework, <br>
+                comprendiendo los conceptos de enrutamiento, serialización y autenticación</p>
+              <h5 class="card-title">Desarrollo de funcionalidades avanzadas</h5>
+              <p>Implemenatción de autenticación y autorización en aplicación Django.<br>
+                Uso de bibiliotecas y herramientas adicionales para agregar funcionalidades como el envío de 
+                correos electrónicos, integración con servicios de terceros</p>
+              <h5 class="card-title">Pruebas y depuración</h5>
+              <p>Escribir pruebas unitarias y funcionales en aplicación Django.<br>
+                Técnicas de depuración para identificar y solucionar errores en el código</p>
             </div>
-            <h4>Portafolio</h4>
           </a>
         </div>
-        <div class="col-md-6 mt-2">
-          <a href="#" class="card bg-dark text-light text-center nav-link">
-            <img class="card-img-top mt-3" src="{% static 'portafolio/images/proceso.jpeg' %}" alt="Project 2">
-            <div class="card-body d-flex justify-content-between">
-              <h5 class="card-title align-self-start">Proyecto 2</h5>
-              <p class="align-self-end" >en proceso...</p>
+
+        <div class="col-md-10 offset-md-1 mt-5">
+          <div class="container bg-dark text-light text-center">
+            <div class="row">
+              <h5 class="fw-bold text-uppercase text-center mb-3 mt-3">Skills</h5>
+
+            {% for skill in skills %}
+            <div class="col-md-3">
+                  <img class="image-profile" src="{{ skill.photo.url }}" alt="{{skill.name}}">
+                  <p class="">{{skill.name|upper}}</p>
+                </div>
+                  {% endfor %}
+
             </div>
-            <h4>Tienda Virtual</h4>
-          </a>
+          </div>
         </div>
         
-        <a href="{% url 'projects_detail' %}" class="btn btn-primary col-md-6 offset-md-3 mt-4 mb-5">Ver detalle proyectos</a>
+        <a href="{% url 'projects_detail' %}" class="btn btn-primary col-md-6 offset-md-3 mt-4 mb-5">Ver detalle proyecto</a>
       </div>
     </div>
   </section>

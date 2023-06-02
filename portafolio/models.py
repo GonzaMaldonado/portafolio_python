@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from decouple import config
 from django.core.mail import send_mail
 #from cloudinary.models import CloudinaryField
 #Para validar que el usuario no ponga una fecha posterior a la creacion del usuario
@@ -23,6 +22,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+class Skill(models.Model):
+    name = models.CharField(max_length=25)
+    photo = models.ImageField(upload_to='skills/images/')
+
+    def __str__(self):
+        return self.name
 
 #Señal a la base dde dats cuando se crea un nuevo usuario, envia un correo de bienvenida al usuario registrado#
 #@receiver(post_save, sender=User)
@@ -32,6 +39,6 @@ class Profile(models.Model):
 #            'Bienvenido a ABC BLOG',
 #            str('Hola ' + instance.full_name + ', usted se ha registrado satisfactoriamente en el blog.'
 #                                               '¡Es un placer que seas parte de nuestra familia!'),
-#            config('EMAIL_HOST_USER'),
+#            os.environ.get('EMAIL_HOST_USER'),
 #            [instance.email]
 #        )
