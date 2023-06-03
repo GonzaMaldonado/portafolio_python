@@ -5,6 +5,8 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+import dj_database_url
+
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +48,7 @@ SILENCED_SYSTEM_CHECKS = ['security.W019']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,11 +79,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
 }
+
+#{
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
 
 AUTH_USER_MODEL = 'portafolio.User'
 # Password validation
@@ -125,6 +133,10 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+
+if not DEBUG:
+    STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE= 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #Ubicacion de los archivos estaticos
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
