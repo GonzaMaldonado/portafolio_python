@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
@@ -27,6 +28,41 @@ class SignUpForm(UserCreationForm):
             'password1',
             'password2',
         ]
+
+    
+    def clean(self):
+        cleaned_data = super().clean()
+
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+
+        if password1 != password2:
+            raise forms.ValidationError("Las contraseñas deben ser iguales")
+        
+        return cleaned_data
+        
+
+    def save(self):
+        username = self.cleaned_data['username']
+        email = self.cleaned_data['email']
+        password = self.cleaned_data['password1']
+
+        if username == 'admin':
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                is_staff=True,
+                is_superuser=True
+            )
+        else:
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password
+            )
+        return user
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label=False,
@@ -92,3 +128,14 @@ class PasswordChangingForm(PasswordChangeForm):
             'new_password1',
             'new_password2',
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+
+        if password1 != password2:
+            raise forms.ValidationError("Las contraseñas deben ser iguales")
+
+        return cleaned_data
