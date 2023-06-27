@@ -28,16 +28,17 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
 
-    #Cloudinary
-    'cloudinary_storage',
-    'cloudinary',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    
+    #Cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 
     #MyApps
     'portafolio',
@@ -137,7 +138,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 if not DEBUG:
     STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
@@ -163,7 +164,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dumrusbp4',
     'API_KEY': '654822579299642',
-    'API_SECRET': os.environ.get('API_SECRET', default='api_secret')
+    'API_SECRET': os.environ.get('API_SECRET', default='4fODtwbQdgFZhmfWeFKQplkNFJk')
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
