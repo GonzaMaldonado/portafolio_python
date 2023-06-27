@@ -53,7 +53,7 @@ SILENCED_SYSTEM_CHECKS = ['security.W019']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,9 +139,9 @@ LOGOUT_REDIRECT_URL = 'home'
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-if not DEBUG:
-    STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE= 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#if not DEBUG:
+    #STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
+    #STATICFILES_STORAGE= 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #Ubicacion de los archivos estaticos
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
