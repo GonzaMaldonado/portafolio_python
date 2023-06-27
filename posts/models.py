@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from ckeditor.fields import RichTextField
-#from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -10,7 +9,6 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     name = models.CharField(max_length=20)
     image = models.ImageField(upload_to='posts/categories/')
-    #image = CloudinaryField('image')
     slug = models.SlugField(unique=True, max_length=40)
     featured = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -30,7 +28,6 @@ class Article(models.Model):
     introduction = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=255)
     image = models.ImageField(upload_to='posts/articles/')
-    #image = CloudinaryField('image')
     body = RichTextField()
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category)

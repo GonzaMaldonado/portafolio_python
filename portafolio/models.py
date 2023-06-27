@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
-#from cloudinary.models import CloudinaryField
 #Para validar que el usuario no ponga una fecha posterior a la creacion del usuario
 from django.core.validators import MaxValueValidator
 from datetime import date
@@ -18,7 +17,6 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     photo = models.ImageField(upload_to='users/images/', blank=True, null=True)
-    #photo = CloudinaryField('image')
 
     def __str__(self):
         return self.user.username

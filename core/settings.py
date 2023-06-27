@@ -5,6 +5,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+import cloudinary_storage
 import dj_database_url
 
 from pathlib import Path
@@ -26,6 +27,10 @@ INSTALLED_APPS = [
     #Admin
     'admin_interface',
     'colorfield',
+
+    #Cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -144,7 +149,7 @@ STATICFILES_DIRS = [
     'portafolio/static',
 ]
 
-#Url publico para los archivos media
+#Url para los archivos media
 MEDIA_URL = '/media/'
 #Ubicacion del archivo media
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -153,6 +158,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dumrusbp4',
+    'API_KEY': '654822579299642',
+    'API_SECRET': os.environ.get('API_SECRET', default='api_secret')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
