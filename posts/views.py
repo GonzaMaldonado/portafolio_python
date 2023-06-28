@@ -51,7 +51,7 @@ class ShowPostDetailView(FormMixin, DetailView):
     context_object_name = 'article'
 
     def get_object(self):
-        return get_object_or_404(Article, id=self.kwargs['id'])
+        return get_object_or_404(Article, slug=self.kwargs['slug'])
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -68,4 +68,4 @@ class ShowPostDetailView(FormMixin, DetailView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('posts:post', kwargs={'id': self.kwargs['id']})
+        return reverse_lazy('posts:post', kwargs={'slug': self.kwargs['slug']})
