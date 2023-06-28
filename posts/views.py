@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
@@ -48,6 +49,9 @@ class ShowPostDetailView(FormMixin, DetailView):
     template_name = 'manage_post/article_detail.html'
     form_class = CommentForm
     context_object_name = 'article'
+
+    def get_object(self):
+        return get_object_or_404(Article, slug=self.kwargs['slug'])
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()

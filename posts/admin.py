@@ -3,7 +3,6 @@ from .models import Category, Article, Rating
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-# Register your models here.
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}

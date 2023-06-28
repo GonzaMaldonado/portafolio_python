@@ -29,14 +29,16 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
-#Señal a la base dde dats cuando se crea un nuevo usuario, envia un correo de bienvenida al usuario registrado#
-#@receiver(post_save, sender=User)
-#def email(sender, instance, created, **kwargs):
-#    if created:
-#        send_mail(
-#            'Bienvenido a ABC BLOG',
-#            str('Hola ' + instance.full_name + ', usted se ha registrado satisfactoriamente en el blog.'
-#                                               '¡Es un placer que seas parte de nuestra familia!'),
-#            os.environ.get('EMAIL_HOST_USER'),
-#            [instance.email]
-#        )
+"""
+Señal a la BBDD cuando se crea un nuevo usuario, envia un correo de bienvenida al usuario registrado#
+@receiver(post_save, sender=User)
+def email(sender, instance, created, **kwargs):
+    if created:
+        send_mail(
+            'Bienvenido a ABC BLOG',
+            str('Hola ' + instance.full_name + ', usted se ha registrado satisfactoriamente en el blog.'
+                                               '¡Es un placer que seas parte de nuestra familia!'),
+            os.environ.get('EMAIL_HOST_USER'),
+            [instance.email]
+        )
+"""

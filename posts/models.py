@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from ckeditor.fields import RichTextField
 
-# Create your models here.
 
 #Categoría
 class Category(models.Model):
