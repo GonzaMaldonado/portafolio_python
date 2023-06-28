@@ -36,7 +36,7 @@
         <img src="{{ article.image.url }}" alt="" class="img">
         <div class="card-body">
             <!-- Identificador del artículo -->
-            <a href="{% url 'posts:post' article.slug %}">
+            <a href="{% url 'posts:post' article.id %}">
                 <h2 class="title">{{ article.title|truncatewords:13 }}</h2>
             </a>
             <p class="introduction">{{ article.introduction|truncatewords:25 }}</p>
