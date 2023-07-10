@@ -108,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_BASEPATH = 'static/ckeditor/ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',

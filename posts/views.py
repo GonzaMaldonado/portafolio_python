@@ -49,10 +49,10 @@ class ShowPostDetailView(FormMixin, DetailView):
     form_class = CommentForm
     context_object_name = 'article'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['article'] = Article.objects.get(slug=self.kwargs['slug'])
-        return context
+    #def get_context_data(self, **kwargs):
+     #   context = super().get_context_data(**kwargs)
+      #  context['article'] = Article.objects.get(slug=self.kwargs['slug'])
+       # return context
 
 
     def post(self, request, *args, **kwargs):
@@ -70,4 +70,4 @@ class ShowPostDetailView(FormMixin, DetailView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('posts:post', kwargs={'slug': self.kwargs['slug']})
+        return reverse_lazy('post', kwargs={'slug': self.kwargs['slug']})
